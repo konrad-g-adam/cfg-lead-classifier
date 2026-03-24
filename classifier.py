@@ -168,15 +168,15 @@ def run(args: argparse.Namespace) -> None:
     csv_files = write_csvs(df, out_dir, args.prefix)
     for label, path in csv_files.items():
         tag = f"({df[df['_classification'] == label].shape[0]:,} rows)" if label != "AUDIT" else "(full audit)"
-        print(f"      CSV  {label:<12s} → {path.name}  {tag}")
+        print(f"      CSV  {label:<12s} -> {path.name}  {tag}")
 
     if not args.no_excel:
         xlsx = write_excel(df, out_dir, args.prefix)
-        print(f"      XLSX             → {xlsx.name}")
+        print(f"      XLSX             -> {xlsx.name}")
 
     if not args.no_json:
         js = write_json_report(df, out_dir, args.prefix, source_file=args.input)
-        print(f"      JSON report      → {js.name}")
+        print(f"      JSON report      -> {js.name}")
 
     # ── Done ───────────────────────────────────────────────────────────
     total_time = time.time() - t0

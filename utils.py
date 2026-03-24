@@ -29,17 +29,57 @@ logger = logging.getLogger(__name__)
 # Input helpers
 # ════════════════════════════════════════════════════════════════════════
 
+def read_input_file(path: str | Path, encoding: str = CSV_READ_ENCODING) -> pd.DataFrame:
+    """Read a CSV or Excel file into a DataFrame, auto-detecting format.
+
+    Handles:
+      - True CSV files (UTF-8, Latin-1, CP-1252 fallback)
+      - Excel files (.xlsx/.xls) even if misnamed as .csv
+      - Files with BOM markers
+    """
+    path = Path(path)
+    logger.info("Reading input file: %s", path)
+
+    # Check if file is actually Excel (ZIP-based) regardless of extension
+    is_excel = False
+    with open(path, "rb") as f:
+        magic = f.read(4)
+        if magic == b"PK\x03\x04":  # ZIP magic bytes = Excel .xlsx
+            is_excel = True
+        elif magic[:2] == b"\xd0\xcf":  # OLE2 magic = old .xls format
+            is_excel = True
+
+    if is_excel or path.suffix.lower() in (".xlsx", ".xls"):
+        logger.info("Detected Excel format, reading with openpyxl/xlrd")
+        try:
+            df = pd.read_excel(path, engine="openpyxl")
+        except Exception:
+            df = pd.read_excel(path)
+        logger.info("Loaded %d rows x %d columns from Excel", len(df), len(df.columns))
+        return df
+
+    # CSV with encoding fallback chain
+    for enc in [encoding, "utf-8-sig", "latin-1", "cp1252"]:
+        try:
+            df = pd.read_csv(
+                path,
+                encoding=enc,
+                on_bad_lines="skip",
+                engine="python",
+            )
+            logger.info("Loaded %d rows x %d columns (encoding: %s)", len(df), len(df.columns), enc)
+            return df
+        except (UnicodeDecodeError, UnicodeError):
+            logger.warning("Encoding %s failed, trying next...", enc)
+            continue
+
+    raise ValueError(f"Could not read {path.name} with any supported encoding (tried: {encoding}, utf-8-sig, latin-1, cp1252)")
+
+
+# Keep backward compatibility
 def read_csv(path: str | Path, encoding: str = CSV_READ_ENCODING) -> pd.DataFrame:
-    """Read a CSV file into a DataFrame, tolerating malformed rows."""
-    logger.info("Reading CSV from %s", path)
-    df = pd.read_csv(
-        path,
-        encoding=encoding,
-        on_bad_lines="skip",
-        engine="python",
-    )
-    logger.info("Loaded %d rows x %d columns", len(df), len(df.columns))
-    return df
+    """Backward-compatible wrapper — now delegates to read_input_file."""
+    return read_input_file(path, encoding)
 
 
 def google_sheet_to_csv_url(sheet_url: str) -> str:

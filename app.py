@@ -49,7 +49,7 @@ import pandas as pd
 from config import POLISH_PROFILE
 from scoring import ProfileScorer
 from utils import (
-    read_csv,
+    read_input_file,
     read_google_sheet,
     write_csvs,
     write_excel,
@@ -229,7 +229,7 @@ def api_classify():
             f = request.files["file"]
             csv_path = job_dir / f.filename
             f.save(str(csv_path))
-            df = read_csv(csv_path)
+            df = read_input_file(csv_path)
         elif request.form.get("sheet_url"):
             df = read_google_sheet(request.form["sheet_url"])
         else:
@@ -301,7 +301,7 @@ def main():
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
-    print(f"\n  Lead Classifier UI → http://{args.host}:{args.port}\n")
+    print(f"\n  Lead Classifier UI -> http://{args.host}:{args.port}\n")
     app.run(host=args.host, port=args.port, debug=args.debug)
 
 
