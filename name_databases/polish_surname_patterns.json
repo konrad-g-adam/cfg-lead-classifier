@@ -1,0 +1,94 @@
+{
+    "_comment": "Polish surname recognition patterns — suffixes, common surnames, and keyword lists.",
+
+    "suffixes_unicode": [
+        "owski", "owska", "ewski", "ewska",
+        "iński", "ińska", "yński", "yńska",
+        "ański", "ańska",
+        "ski", "ska",
+        "owicz", "ewicz", "wicz", "icz",
+        "czyk", "czak", "czuk",
+        "iak", "niak"
+    ],
+
+    "suffixes_ascii": [
+        "owski", "owska", "ewski", "ewska",
+        "inski", "inska", "ynski", "ynska",
+        "anski", "anska",
+        "ski", "ska",
+        "owicz", "ewicz", "wicz", "icz",
+        "czyk", "czak", "czuk",
+        "iak", "niak"
+    ],
+
+    "diacritics_regex": "[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]",
+
+    "common_surnames": [
+        "nowak", "wójcik", "wojcik", "kowalczyk", "woźniak", "wozniak",
+        "mazur", "krawczyk", "zając", "zajac", "pawlak",
+        "michalak", "król", "krol", "wieczorek",
+        "stępień", "stepien", "adamczyk", "dudek",
+        "walczak", "sikora", "baran", "szewczyk",
+        "tomczak", "pietrzak", "marciniak",
+        "wróbel", "wrobel", "bąk", "bak",
+        "włodarczyk", "wlodarczyk",
+        "kubiak", "wilk", "lis", "mazurek",
+        "szymczak", "krupa", "kaczmarek",
+        "sobczak", "kołodziej", "kolodziej",
+        "gajda", "mróz", "mroz", "klimek",
+        "cieślak", "cieslak", "ziemba", "kowal",
+        "kaźmierczak", "kazmierczak",
+        "wrona", "kozak", "mucha", "tomczyk",
+        "bednarek", "jóźwiak", "jozwiak",
+        "sowa", "kurek", "pawlik", "augustyniak",
+        "duda", "grzelak",
+        "kasprzak", "klimczak",
+        "konieczny", "kopeć", "kopec",
+        "kubik", "łuczak", "luczak",
+        "michalik", "mika",
+        "młynarczyk", "mlynarczyk",
+        "noga", "ogrodnik", "olejnik",
+        "paluch", "piątek", "piatek", "pietrzyk",
+        "polak", "prokop", "przybysz",
+        "rokita", "rybak", "skiba",
+        "socha", "stachowiak", "stasiak",
+        "świątek", "swiatek", "tkaczyk", "tomasik",
+        "tracz", "turek", "wachowiak",
+        "witczak", "wojtas", "wojtczak", "wolski",
+        "zawada", "żak", "zak", "żurek", "zurek",
+        "fidler", "grotek", "ptak", "mamcarz",
+        "dziwisz", "prawda", "pettke", "mejer",
+        "prusak", "pieszka"
+    ],
+
+    "title_keywords_pl": [
+        "kierownik", "specjalista", "dyrektor", "inżynier", "właściciel",
+        "członek", "zarządu", "menadżer", "menedżer", "konstruktor",
+        "analityk", "asystent", "doradca", "handlowiec", "informatyk",
+        "koordynator", "mechanik", "projektant", "przedstawiciel", "serwisant",
+        "technik", "tester", "sprzedaży", "logistyki", "produkcji",
+        "obsługi", "jakości", "rozwoju", "kadr", "księgowy", "księgowa",
+        "prawnik", "prezes", "wiceprezes", "naczelnik", "zastępca",
+        "młodszy", "starszy", "główny", "ds.", "dział", "departament",
+        "oddział", "wydział", "biuro", "szef", "brygadzista", "mistrz",
+        "reklamacji", "montażu", "utrzymania", "ruchu", "zakupów",
+        "magazynier", "operator", "spawacz", "elektryk",
+        "laborant", "diagnosta", "ratownik", "pielęgniarka", "lekarz",
+        "nauczyciel", "wykładowca", "profesor", "badacz",
+        "sprzedawca", "kasjer", "kelner", "kucharz",
+        "kierowca", "dyspozytor", "magazynowy", "produkcyjny",
+        "technolog", "administrator", "referent", "inspektor",
+        "programista", "deweloper", "grafik", "redaktor",
+        "spedytor", "kontroler", "audytor", "rewident",
+        "notariusz", "adwokat", "radca", "rzecznik", "tłumacz",
+        "procesów", "systemów", "wizyjnych", "płacowej",
+        "kadrowo", "rozliczeniowy", "personalny"
+    ],
+
+    "company_keywords_pl": [
+        "polska", "polski", "polskie",
+        "spółka", "spolka",
+        "sp.", "z.o.o",
+        "zakład", "zaklad"
+    ]
+}

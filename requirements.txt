@@ -1,0 +1,10 @@
+# Lead Nationality Classifier — Python dependencies
+# Install with:  pip install -r requirements.txt
+
+# ── Core (always required) ─────────────────────────────────────────────
+pandas>=1.5
+openpyxl>=3.1          # Excel read/write
+langdetect>=1.0.9      # Language detection for titles & summaries
+
+# ── Web UI (Phase 2, optional) ─────────────────────────────────────────
+flask>=3.0             # pip install flask  (only needed for app.py)
