@@ -38,7 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from config import PROFILES, DEFAULT_LANGUAGE, LanguageProfile
 from scoring import ProfileScorer
-from utils import read_input, write_csvs, write_excel, write_json_report
+from utils import read_input, normalize_columns, write_csvs, write_excel, write_json_report
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -138,6 +138,10 @@ def run(args: argparse.Namespace) -> None:
     print(f"\n[1/4] Loading data from: {args.input}")
     df = read_input(args.input)
     print(f"      Loaded {len(df):,} profiles  ({time.time() - t0:.1f}s)")
+
+    # ── Step 1.5: Normalize columns for any source format ────────────
+    df, detected_schema = normalize_columns(df)
+    print(f"      Schema detected: {detected_schema}")
 
     # ── Step 2: Score & classify ───────────────────────────────────────
     t1 = time.time()

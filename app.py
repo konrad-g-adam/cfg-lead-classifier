@@ -50,6 +50,7 @@ from config import POLISH_PROFILE
 from scoring import ProfileScorer
 from utils import (
     read_input_file,
+    normalize_columns,
     read_google_sheet,
     write_csvs,
     write_excel,
@@ -234,6 +235,9 @@ def api_classify():
             df = read_google_sheet(request.form["sheet_url"])
         else:
             return jsonify({"error": "No file or URL provided"}), 400
+
+        # ── Normalize columns for any source format ─────────────────
+        df, detected_schema = normalize_columns(df)
 
         # ── Score ──────────────────────────────────────────────────────
         scorer = ProfileScorer(POLISH_PROFILE)
